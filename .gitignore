@@ -1,0 +1,11 @@
+### Intellij ###
+
+.idea/
+/out/
+*.iml
+target/
+
+# Package Files #
+*.jar
+*.war
+*.ear
