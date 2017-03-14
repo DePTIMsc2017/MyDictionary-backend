@@ -12,6 +12,93 @@
     <name>MyDictionary-backend</name>
     <description>A project for SRT</description>
 
+    <profiles>
+        <profile>
+            <id>integration</id>
+            <dependencies>
+                <dependency>
+                    <groupId>info.cukes</groupId>
+                    <artifactId>cucumber-junit</artifactId>
+                    <version>1.2.4</version>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>info.cukes</groupId>
+                    <artifactId>cucumber-core</artifactId>
+                    <version>1.2.4</version>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>info.cukes</groupId>
+                    <artifactId>cucumber-java</artifactId>
+                    <version>1.2.4</version>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>info.cukes</groupId>
+                    <artifactId>cucumber-picocontainer</artifactId>
+                    <version>1.2.4</version>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-firefox-driver</artifactId>
+                    <version>2.53.1</version>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-chrome-driver</artifactId>
+                    <version>2.53.1</version>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-java</artifactId>
+                    <version>2.53.1</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>2.12</version>
+                        <configuration>
+                            <skip>false</skip>
+                            <includes>
+                                <include>**/*IT.java</include>
+                            </includes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.apache.maven.surefire</groupId>
+                                <artifactId>surefire-junit4</artifactId>
+                                <version>2.19</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+
+
+        </profile>
+    </profiles>
+
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -49,7 +136,58 @@
             <artifactId>jacoco-maven-plugin</artifactId>
             <version>0.7.7.201606060606</version>
         </dependency>
+
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>1.2.4</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-core</artifactId>
+            <version>1.2.4</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>1.2.4</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-picocontainer</artifactId>
+            <version>1.2.4</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-firefox-driver</artifactId>
+            <version>2.53.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chrome-driver</artifactId>
+            <version>2.53.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>2.53.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
+
+
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
