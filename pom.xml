@@ -106,6 +106,17 @@
         <version>1.5.2.RELEASE</version>
         <relativePath/>
     </parent>
+
+    <developers>
+      <developer>
+        <id>orbanistvan</id>
+        <name>Orbán István Sándor</name>
+        <organization>Debreceni Egyetem, Informatika Kar</organization>
+        <roles>
+          <role>developer</role>
+        </roles>
+      </developer>
+    </developers>
     
     <dependencies>
         <dependency>
@@ -217,7 +228,6 @@
                         </goals>
                     </execution>
                 </executions>
-
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -225,5 +235,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
