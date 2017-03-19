@@ -116,8 +116,21 @@
           <role>developer</role>
         </roles>
       </developer>
+
+      <developer>
+        <id>geczogergo</id>
+        <name>Gecző Gergő</name>
+        <organization>Debreceni Egyetem, Informatika Kar</organization>
+        <roles>
+           <role>developer</role>
+        </roles>
+      </developer>
     </developers>
-    
+
+
+
+
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
