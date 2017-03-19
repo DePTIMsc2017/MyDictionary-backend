@@ -125,13 +125,16 @@
            <role>developer</role>
         </roles>
       </developer>
-    </developers>
 
-
-
-
-
-    <dependencies>
+<developer>
+        <id>peterburai</id>
+        <name>Burai Péter</name>
+        <organization>Debreceni Egyetem, Informatika Kar</organization>
+        <roles>
+          <role>developer</role>
+        </roles>
+      </developer>    </developers>
+        <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
