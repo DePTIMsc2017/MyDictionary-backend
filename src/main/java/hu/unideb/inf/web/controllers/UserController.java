@@ -12,8 +12,8 @@ import javax.annotation.Resource;
  * Created by mates on 2017. 03. 22..
  */
 @RestController
-@RequestMapping(value = "/login")
-public class LoginController {
+@RequestMapping(value = "/users")
+public class UserController {
 
     @Resource
     UserService userService;
