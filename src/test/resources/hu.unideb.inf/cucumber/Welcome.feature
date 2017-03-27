@@ -1,7 +1,4 @@
 Feature: Welcome
-
-  Scenario: The user navigates to the page
-    Given The user signed in
 	
   Scenario: The user wants to sign in with correct username and password
 	  Given The user is on login page
