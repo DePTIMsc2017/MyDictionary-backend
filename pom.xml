@@ -133,7 +133,16 @@
         <roles>
           <role>developer</role>
         </roles>
-      </developer>    </developers>
+      </developer>
+        <developer>
+            <id>varadisandor</id>
+            <name>Váradi Sándor</name>
+            <organization>Debreceni Egyetem, Informatika Kar</organization>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
         <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
