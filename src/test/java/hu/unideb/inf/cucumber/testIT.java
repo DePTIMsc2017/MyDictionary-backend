@@ -10,7 +10,7 @@ import cucumber.api.junit.Cucumber;
  */
 @RunWith(Cucumber.class)
 @CucumberOptions(format = {"json:target/report.json", "pretty"},
-        features={"src/test/resources/hu.unideb.inf/cucumber/Welcome.feature"},
-        glue = {"hu.unideb.inf.cucumber.welcome","hu.unideb.inf.cucumber.util"})
+        features={"src/test/resources/hu.unideb.inf/cucumber/Login.feature","src/test/resources/hu.unideb.inf/cucumber/InitialPage.feature"},
+        glue = {"hu.unideb.inf.cucumber.login","hu.unideb.inf.cucumber.initialPage","hu.unideb.inf.cucumber.util"})
 public class testIT {
 }
