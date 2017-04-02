@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by mates on 2017. 03. 22..
@@ -48,6 +50,24 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Transactional
     public Long saveOrUpdate(UserDTO userDTO) {
         return null;
+    }
+
+    @Override
+    @Transactional
+    public UserDTO save(UserDTO userDTO) {
+        UserEntity user = userRepository.save(modelMapper.map(userDTO, UserEntity.class));
+        return (user != null) ? modelMapper.map(user, UserDTO.class) : null;
+    }
+
+    @Override
+    @Transactional
+    public List<UserDTO> findAll() {
+        List<UserEntity> entities = userRepository.findAll();
+        List<UserDTO> dtos = new ArrayList<UserDTO>();
+        for (UserEntity entity:entities) {
+            dtos.add(modelMapper.map(entity, UserDTO.class));
+        }
+        return dtos;
     }
 
     @Override

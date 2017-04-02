@@ -96,6 +96,7 @@ public class UserEntity implements java.io.Serializable{
 
     @PrePersist
     void preInsert() {
+        this.status=UserStatus.ACTIVE;
         this.registrationDate = new Date();
         this.newsletter = false;
         this.maxWordGroup = 50;

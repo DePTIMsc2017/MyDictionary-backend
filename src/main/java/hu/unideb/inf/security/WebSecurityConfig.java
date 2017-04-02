@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
@@ -27,6 +26,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
             http.csrf().disable().authorizeRequests()
                     .antMatchers("/").permitAll()
                     .antMatchers(HttpMethod.POST, "/login").permitAll()
+                    .antMatchers("/users").hasRole("ADMIN")
                     .anyRequest().authenticated()
                     .and()
                     // We filter the api/login requests
@@ -40,6 +40,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
         @Override
         protected void configure(AuthenticationManagerBuilder auth) throws Exception {
             auth.userDetailsService(userDetailsService);
+            //TODO:Later auth.userDetailsService(userDetailsService).).passwordEncoder(passwordEncoder);
             // Create a default account
             /*auth.inMemoryAuthentication()
                     .withUser("admin")
