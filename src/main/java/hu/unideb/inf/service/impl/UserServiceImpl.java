@@ -7,6 +7,9 @@ import hu.unideb.inf.service.domain.UserDTO;
 import hu.unideb.inf.service.exception.UserNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +19,7 @@ import javax.annotation.Resource;
  * Created by mates on 2017. 03. 22..
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
@@ -45,5 +48,12 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public Long saveOrUpdate(UserDTO userDTO) {
         return null;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        UserEntity user = userRepository.findByUsername(s);
+        return (user != null) ? modelMapper.map(user, UserDTO.class) : null;
     }
 }
