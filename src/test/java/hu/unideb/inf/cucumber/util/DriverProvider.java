@@ -14,6 +14,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.github.bonigarcia.wdm.ChromeDriverManager;
+
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
@@ -37,6 +39,8 @@ public class DriverProvider {
     }
 
     private static WebDriver initiateDriver() {
+        System.setProperty("browser", "chrome");
+        ChromeDriverManager.getInstance().setup();
         WebDriver firefoxDriver = new ChromeDriver();
         firefoxDriver.manage().timeouts().implicitlyWait(IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
         return firefoxDriver;
