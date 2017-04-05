@@ -1,14 +1,15 @@
 package hu.unideb.inf.service.domain;
 
 import hu.unideb.inf.enums.UserStatus;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by mates on 2017. 03. 22..
  */
-public class UserDTO implements java.io.Serializable {
+public class UserDTO implements UserDetails,java.io.Serializable {
 
     private long id;
     private String username;
@@ -145,8 +146,38 @@ public class UserDTO implements java.io.Serializable {
         return username;
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
+        for (RoleDTO r :getRoles()) {
+            authorities.add(new GrantedAuthorityImpl(r.getName()));
+        }
+        return authorities;
+
     }
 
     public String getPassword() {

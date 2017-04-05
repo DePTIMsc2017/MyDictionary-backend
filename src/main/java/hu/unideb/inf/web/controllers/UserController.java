@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by mates on 2017. 03. 22..
@@ -19,7 +20,9 @@ public class UserController {
     UserService userService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public UserDTO getUser(){
+    /*public UserDTO getUser(){
         return userService.findUserByName("test");
-    }
+    }*/
+
+    public List<UserDTO> getUsers(){return userService.findAll();}
 }

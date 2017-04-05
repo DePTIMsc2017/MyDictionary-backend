@@ -31,6 +31,7 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter  {
             throws AuthenticationException, IOException, ServletException {
         UserDTO creds = new ObjectMapper()
                 .readValue(req.getInputStream(), UserDTO.class);
+        //TODO: catch exception, log the error
         return getAuthenticationManager().authenticate(
                 new UsernamePasswordAuthenticationToken(
                         creds.getUsername(),
