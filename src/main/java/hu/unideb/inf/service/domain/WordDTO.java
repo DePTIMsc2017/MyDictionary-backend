@@ -13,8 +13,7 @@ public class WordDTO  implements java.io.Serializable{
     private String wordClass;
     private LanguageDTO language;
 
-    private List<WordDTOWithoutMeaning> wordMeaning1;
-    private List<WordDTOWithoutMeaning> wordMeaning2;
+    private List<WordDTOWithoutMeaning> wordMeaning;
 
     public WordDTO() {
     }
@@ -58,26 +57,12 @@ public class WordDTO  implements java.io.Serializable{
         this.language = language;
     }
 
-    public List<WordDTOWithoutMeaning> getWordMeaning1() {
-        return wordMeaning1;
+    public List<WordDTOWithoutMeaning> getWordMeaning() {
+        return wordMeaning;
     }
 
-    public void setWordMeaning1(List<WordDTO> wordMeaningDTO1) {
-        wordMeaning1 = new ArrayList<>();
-        for(WordDTO word : wordMeaningDTO1){
-            wordMeaning1.add(new WordDTOWithoutMeaning(word.id,word.word,word.wordClass,word.language));
-        }
-    }
-
-    public List<WordDTOWithoutMeaning> getWordMeaning2() {
-        return wordMeaning2;
-    }
-
-    public void setWordMeaning2(List<WordDTO> wordMeaningDTO2) {
-        wordMeaning2 = new ArrayList<>();
-        for(WordDTO word : wordMeaningDTO2){
-            wordMeaning2.add(new WordDTOWithoutMeaning(word.id,word.word,word.wordClass,word.language));
-        }
+    public void setWordMeaning(List<WordDTOWithoutMeaning> wordMeaning) {
+        this.wordMeaning = wordMeaning;
     }
 
     @Override
