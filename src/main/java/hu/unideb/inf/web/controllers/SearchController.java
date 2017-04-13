@@ -17,7 +17,7 @@ public class SearchController {
     WordService wordService;
 
     @RequestMapping(value="/search",method = RequestMethod.GET)
-    public List<WordDTO> searchForThisWord(@RequestParam(value = "word") String word){
-        return wordService.findMeaning(word);
+    public List<WordDTO> searchForThisWord(@RequestParam(value = "word") String word, @RequestParam(value="sourceLang") String sourceLang, @RequestParam(value="destLang") String destLang){
+        return wordService.findMeaning(word,sourceLang,destLang);
     }
 }

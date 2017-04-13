@@ -1,5 +1,6 @@
 package hu.unideb.inf;
 
+import hu.unideb.inf.modellmappers.WordMap;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,7 +26,9 @@ public class Application extends SpringBootServletInitializer {
 
     @Bean
     public ModelMapper modelMapper(){
-        return new ModelMapper();
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.addMappings(new WordMap());
+        return modelMapper;
     }
 
     @Bean

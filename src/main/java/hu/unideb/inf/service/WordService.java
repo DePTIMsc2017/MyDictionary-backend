@@ -8,5 +8,5 @@ import java.util.List;
  * Created by varadi on 2017.03.26..
  */
 public interface WordService {
-    List<WordDTO> findMeaning(String name);
+    List<WordDTO> findMeaning(String name,String sourceLanguage, String destinationLanguage);
 }
