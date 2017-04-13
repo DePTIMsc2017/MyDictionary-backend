@@ -38,17 +38,15 @@ public class CommonStepDefs {
     @When("^The user clicks on (.*) button$")
     public void click(String button){
         switch (button) {
-            case "Bejelentkezés":
-                getDriver().findElement(By.xpath("//button[@type='submit']")).click();
-                break;
-            case "Gyakorlás":
-                //TODO: ha lesz ID, megírni
-                break;
             case "Szavak felvétele":
-                //TODO: ha lesz ID, megírni
+                getDriver().findElement(By.id("buttonGiveWords")).click();
                 break;
-            case "Lehetőségek":
-                //TODO: ha lesz ID, megírni
+            default:
+                String[] words =button.split(" ");
+                for(int i = 0; i<words.length;++i){
+                    words[i] = Character.toUpperCase(words[i].charAt(0))+words[i].substring(1);
+                }
+                getDriver().findElement(By.id("button"+String.join("",words))).click();
                 break;
         }
     }
@@ -81,7 +79,7 @@ public class CommonStepDefs {
         userIsOnLoginPage();
         typeEmailAdress("teszt@teszt.hu");
         typePassword("teszt");
-        click("Bejelentkezés");
+        click("Login");
     }
 
     @Then ("^nothing happens, stayed on (.*) page$")
@@ -89,7 +87,7 @@ public class CommonStepDefs {
         String url ="";
         switch (beforePage) {
             case "initial":
-                url = "http://localhost:4200/";
+                url = "http://localhost:4200/#";
                 break;
         }
         Assert.assertEquals(url,getDriver().getCurrentUrl());
