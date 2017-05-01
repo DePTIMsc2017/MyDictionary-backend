@@ -11,6 +11,7 @@ import java.util.List;
  * Created by varadi on 2017.03.26..
  */
 @RestController
+@RequestMapping("/words")
 public class SearchController {
 
     @Resource

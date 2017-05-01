@@ -40,6 +40,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Transactional(readOnly = true)
     public UserDTO login(UserDTO user) throws UserNotFoundException {
         UserDTO userDTO;
+
         UserEntity userEntity = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
 
         userDTO=modelMapper.map(userEntity,UserDTO.class);

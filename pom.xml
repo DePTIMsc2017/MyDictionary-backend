@@ -133,7 +133,7 @@
         </roles>
       </developer>
 
-<developer>
+      <developer>
         <id>peterburai</id>
         <name>Burai Péter</name>
         <organization>Debreceni Egyetem, Informatika Kar</organization>
@@ -150,7 +150,8 @@
             </roles>
         </developer>
     </developers>
-        <dependencies>
+
+    <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
