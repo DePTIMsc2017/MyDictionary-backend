@@ -25,14 +25,17 @@ public class CommonStepDefs {
         getDriver().get("http://localhost:4200/login");
     }
 
-    @When("^The user types (.*) into E-mail cím$")
-    public void typeEmailAdress(String email){
-        getDriver().findElement(By.id("inputEmail")).sendKeys(email);
+    public String convertToID(String name){
+        String[] words =name.split(" ");
+        for(int i = 0; i<words.length;++i){
+            words[i] = Character.toUpperCase(words[i].charAt(0))+words[i].substring(1);
+        }
+        return String.join("",words);
     }
 
-    @When("^The user types (.*) into Jelszó$")
-    public void typePassword(String password){
-        getDriver().findElement(By.id("inputPassword")).sendKeys(password);
+    @When("^The user types (.*) into (.*)$")
+    public void type(String typed, String where){
+        getDriver().findElement(By.id("input"+convertToID(where))).sendKeys(typed);
     }
 
     @When("^The user clicks on (.*) button$")
@@ -42,11 +45,7 @@ public class CommonStepDefs {
                 getDriver().findElement(By.id("buttonGiveWords")).click();
                 break;
             default:
-                String[] words =button.split(" ");
-                for(int i = 0; i<words.length;++i){
-                    words[i] = Character.toUpperCase(words[i].charAt(0))+words[i].substring(1);
-                }
-                getDriver().findElement(By.id("button"+String.join("",words))).click();
+                getDriver().findElement(By.id("button"+convertToID(button))).click();
                 break;
         }
     }
@@ -77,8 +76,8 @@ public class CommonStepDefs {
     @Given ("^The user is on initial page$")
     public void initialPage(){
         userIsOnLoginPage();
-        typeEmailAdress("teszt@teszt.hu");
-        typePassword("teszt");
+        type("teszt","username");
+        type("teszt","password");
         click("Login");
     }
 
