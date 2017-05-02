@@ -8,10 +8,7 @@ import hu.unideb.inf.web.controllers.utils.EncryptionService;
 import hu.unideb.inf.web.controllers.utils.LoginDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -45,5 +42,10 @@ public class IndexController {
         return ResponseEntity.ok()
                 .header("Access-Control-Expose-Headers", JwtTokenUtils.JWT_TOKEN_HEADER)
                 .header(JwtTokenUtils.JWT_TOKEN_HEADER, JwtTokenUtils.generateToken(user)).build();
+    }
+
+    @GetMapping("/generatepass")
+    public ResponseEntity generatePass(@RequestParam String pass) {
+        return ResponseEntity.ok(encryptionService.encode(pass));
     }
 }

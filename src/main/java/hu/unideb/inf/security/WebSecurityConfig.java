@@ -63,7 +63,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public JwtTokenAuthenticationFilter authenticationTokenFilterBean() throws Exception {
         SkipPathRequestMatcher matcher = new SkipPathRequestMatcher("/api/**",
                 "/api/authenticate",
-                "/words/**");
+                "/api/generatepass",
+                "/api/words/**");
 
         JwtTokenAuthenticationFilter authenticationTokenFilter = new JwtTokenAuthenticationFilter(matcher);
         authenticationTokenFilter.setAuthenticationManager(authenticationManager());
