@@ -41,4 +41,20 @@ public class WordServiceImpl implements WordService{
         }
         return wordDTOS;
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<WordDTO> findByMeaning(String word) {
+        List<WordEntity> words = wordRepository.findByWord(word);
+        java.lang.reflect.Type targetListType = new TypeToken<List<WordDTO>>() {}.getType();
+        List<WordDTO> wordDTOS = modelMapper.map(words,targetListType);
+        final java.lang.reflect.Type targetListType1 = new TypeToken<List<WordDTOWithoutMeaning>>() {}.getType();
+
+        wordDTOS.forEach(item ->
+            item.setWordMeaning(modelMapper.map(wordRepository.findMeaningsNotEqualLang(item.getId(),
+                    item.getLanguage().getId()), targetListType1))
+        );
+
+        return wordDTOS;
+    }
 }

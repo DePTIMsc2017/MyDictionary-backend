@@ -27,6 +27,7 @@ public class WordEntity implements java.io.Serializable{
 
     @OneToMany(mappedBy="word")
     private List<SearchedWordEntity> searchedWords;
+
     @ManyToMany
     @JoinTable(
             name="word_meaning",
@@ -47,6 +48,7 @@ public class WordEntity implements java.io.Serializable{
             joinColumns=@JoinColumn(name="word", referencedColumnName="id"),
             inverseJoinColumns=@JoinColumn(name="word_group", referencedColumnName="id"))
     private List<WordGroupEntity> word_groups;
+
     public WordEntity() {
     }
 

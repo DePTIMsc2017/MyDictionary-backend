@@ -1,6 +1,5 @@
 package hu.unideb.inf.modellmappers;
 
-import hu.unideb.inf.persistence.entities.LanguageEntity;
 import hu.unideb.inf.persistence.entities.WordEntity;
 import hu.unideb.inf.service.domain.LanguageDTO;
 import hu.unideb.inf.service.domain.WordDTO;

@@ -1,5 +1,6 @@
 package hu.unideb.inf.service;
 
+import hu.unideb.inf.persistence.entities.WordEntity;
 import hu.unideb.inf.service.domain.WordDTO;
 
 import java.util.List;
@@ -9,4 +10,6 @@ import java.util.List;
  */
 public interface WordService {
     List<WordDTO> findMeaning(String name,String sourceLanguage, String destinationLanguage);
+
+    List<WordDTO> findByMeaning(String name);
 }
