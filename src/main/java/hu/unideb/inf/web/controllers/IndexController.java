@@ -25,8 +25,6 @@ public class IndexController {
     public ResponseEntity login(@Valid @RequestBody LoginDTO login) {
         UserEntity user = userRepository.findByUsername(login.getUsername());
 
-
-
         if (user == null) {
             throw new IllegalArgumentException(String.format("User \"%s\" not found!", login.getUsername()));
         }
