@@ -72,6 +72,25 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public UserDTO findUserByID(long id) throws UserNotFoundException {
+        UserEntity user = userRepository.findById(id);
+        if(user==null){
+            throw new UserNotFoundException();
+        }
+        return modelMapper.map(user, UserDTO.class);
+    }
+
+    @Override
+    public void changePassword(long id, String password) {
+        userRepository.changePassword(id,password);
+    }
+
+    @Override
+    public void deleteUser(long id) {
+        userRepository.deleteById(id);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         UserEntity user = userRepository.findByUsername(s);
