@@ -16,4 +16,19 @@ public class GrantedAuthorityImpl implements GrantedAuthority {
     public String getAuthority() {
         return authority;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        GrantedAuthorityImpl that = (GrantedAuthorityImpl) o;
+
+        return authority != null ? authority.equals(that.authority) : that.authority == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return authority != null ? authority.hashCode() : 0;
+    }
 }
