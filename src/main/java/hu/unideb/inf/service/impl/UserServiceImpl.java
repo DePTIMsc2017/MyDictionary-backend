@@ -14,7 +14,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -56,7 +59,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     @Transactional
     public UserDTO save(UserDTO userDTO) {
-        UserEntity user = userRepository.save(modelMapper.map(userDTO, UserEntity.class));
+        SimpleDateFormat sf= new SimpleDateFormat("YYYY-MM-DD");
+        String date = userDTO.getBirthDate();
+        userDTO.setBirthDate(null);
+        UserEntity user = modelMapper.map(userDTO, UserEntity.class);
+        //UserEntity user = userRepository.save(modelMapper.map(userDTO, UserEntity.class));
+        try {
+            user.setBirthDate(sf.parse(date));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        user=userRepository.save(user);
         return (user != null) ? modelMapper.map(user, UserDTO.class) : null;
     }
 
