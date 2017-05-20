@@ -24,8 +24,8 @@ public class UserEntity implements java.io.Serializable{
     @Column(name = "user_pwd", nullable = false, length = 255)
     private String password;
 
-    @Column(name = "mail", nullable = false, length = 255)
-    private String mail;
+    @Column(name = "email", nullable = false, length = 255)
+    private String email;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "birth_date")
@@ -82,7 +82,7 @@ public class UserEntity implements java.io.Serializable{
         this.id = id;
         this.username = username;
         this.password = password;
-        this.mail = mail;
+        this.email = mail;
         this.birthDate = birthDate;
         this.defaultLanguage = defaultLanguage;
         this.status = status;
@@ -127,12 +127,12 @@ public class UserEntity implements java.io.Serializable{
         this.password = password;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String mail) {
+        this.email = mail;
     }
 
     public Date getBirthDate() {

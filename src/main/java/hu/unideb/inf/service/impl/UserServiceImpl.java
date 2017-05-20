@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setPassword(userDTO.getPassword());
         user.setCountry(userDTO.getCountry());
         user.setCity(userDTO.getCity());
-        user.setMail(userDTO.getMail());
+        user.setEmail(userDTO.getEmail());
         //UserEntity toDb = modelMapper.map(userDTO, UserEntity.class);
         //toDb.setId(user.getId());
         //UserEntity user = userRepository.save(modelMapper.map(userDTO, UserEntity.class));
