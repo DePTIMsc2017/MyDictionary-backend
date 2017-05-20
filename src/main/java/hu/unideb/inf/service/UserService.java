@@ -15,4 +15,7 @@ public interface UserService {
     Long saveOrUpdate(UserDTO userDTO);
     UserDTO save(UserDTO userDTO);
     List<UserDTO> findAll();
+    UserDTO findUserByID(long id) throws UserNotFoundException;
+    void changePassword (long id, String password);
+    void deleteUser(long id);
 }
