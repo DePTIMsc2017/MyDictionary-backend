@@ -4,6 +4,7 @@ import hu.unideb.inf.persistence.entities.UserEntity;
 import hu.unideb.inf.persistence.repositories.UserRepository;
 import hu.unideb.inf.service.UserService;
 import hu.unideb.inf.service.domain.UserDTO;
+import hu.unideb.inf.service.exception.UserAlreadyExistException;
 import hu.unideb.inf.service.exception.UserNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,46 +52,61 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    @Transactional
     public Long saveOrUpdate(UserDTO userDTO) {
         SimpleDateFormat sf= new SimpleDateFormat("YYYY-MM-DD");
         String date = userDTO.getBirthDate();
         userDTO.setBirthDate(null);
 
         UserEntity user = userRepository.findByUsername(userDTO.getUsername());
-        user.setUsername(userDTO.getUsername());
-        user.setPassword(userDTO.getPassword());
-        user.setCountry(userDTO.getCountry());
-        user.setCity(userDTO.getCity());
-        user.setEmail(userDTO.getEmail());
+        if(user != null) {
+            user.setUsername(userDTO.getUsername());
+            user.setPassword(userDTO.getPassword());
+            user.setCountry(userDTO.getCountry());
+            user.setCity(userDTO.getCity());
+            user.setEmail(userDTO.getEmail());
+        }
         //UserEntity toDb = modelMapper.map(userDTO, UserEntity.class);
         //toDb.setId(user.getId());
         //UserEntity user = userRepository.save(modelMapper.map(userDTO, UserEntity.class));
         try {
-            user.setBirthDate(sf.parse(date));
+            if(user!=null) {
+                user.setBirthDate(sf.parse(date));
+            }
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        user=userRepository.save(user);
+        try {
+            user=userRepository.save(user);
+
+        }catch (org.springframework.dao.DataAccessException e){
+            user=null;
+        }
 
         return (user != null) ? modelMapper.map(user, UserDTO.class).getId() : null;
     }
 
     @Override
-    @Transactional
+    //@Transactional(noRollbackFor =  javax.persistence.RollbackException.class)
     public UserDTO save(UserDTO userDTO) {
-        SimpleDateFormat sf= new SimpleDateFormat("YYYY-MM-DD");
-        String date = userDTO.getBirthDate();
-        userDTO.setBirthDate(null);
-        UserEntity user = modelMapper.map(userDTO, UserEntity.class);
-        //UserEntity user = userRepository.save(modelMapper.map(userDTO, UserEntity.class));
-        try {
-            user.setBirthDate(sf.parse(date));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        user=userRepository.save(user);
-        return (user != null) ? modelMapper.map(user, UserDTO.class) : null;
+
+            SimpleDateFormat sf= new SimpleDateFormat("YYYY-MM-DD");
+            String date = userDTO.getBirthDate();
+            userDTO.setBirthDate(null);
+            UserEntity user = modelMapper.map(userDTO, UserEntity.class);
+            //UserEntity user = userRepository.save(modelMapper.map(userDTO, UserEntity.class));
+            try {
+                user.setBirthDate(sf.parse(date));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            try {
+                user=userRepository.save(user);
+
+            }catch (org.springframework.dao.DataAccessException e){
+                user=null;
+            }
+            return (user != null) ? modelMapper.map(user, UserDTO.class) : null;
+
     }
 
     @Override

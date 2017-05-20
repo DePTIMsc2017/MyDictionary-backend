@@ -23,14 +23,27 @@ public class RegistrationController {
     @RequestMapping(value="/register",method = RequestMethod.POST)
     public ResponseEntity register(@RequestBody UserDTO userDTO){
         service.save(userDTO);
-       return ResponseEntity.ok()
-               .header("Access-Control-Expose-Headers", JwtTokenUtils.JWT_TOKEN_HEADER).build();
+        if(userDTO!=null){
+            return ResponseEntity.ok()
+                    .header("Access-Control-Expose-Headers", JwtTokenUtils.JWT_TOKEN_HEADER).build();
+        } else {
+            return ResponseEntity.ok()
+                    .header("Access-Control-Expose-Headers", JwtTokenUtils.JWT_TOKEN_HEADER).build();
+            //TODO: save failed
+        }
+
     }
 
     @RequestMapping(value="/modifyuser",method = RequestMethod.POST)
     public ResponseEntity modify(@RequestBody UserDTO userDTO){
         service.saveOrUpdate(userDTO);
-        return ResponseEntity.ok()
-                .header("Access-Control-Expose-Headers", JwtTokenUtils.JWT_TOKEN_HEADER).build();
+        if(userDTO!=null){
+            return ResponseEntity.ok()
+                    .header("Access-Control-Expose-Headers", JwtTokenUtils.JWT_TOKEN_HEADER).build();
+        } else {
+            return ResponseEntity.ok()
+                    .header("Access-Control-Expose-Headers", JwtTokenUtils.JWT_TOKEN_HEADER).build();
+            //TODO: save failed
+        }
     }
 }
