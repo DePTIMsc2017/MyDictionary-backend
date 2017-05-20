@@ -1,6 +1,5 @@
 package hu.unideb.inf.web.controllers;
 
-import hu.unideb.inf.persistence.repositories.UserRepository;
 import hu.unideb.inf.security.authentication.JwtTokenUtils;
 import hu.unideb.inf.service.UserService;
 import hu.unideb.inf.service.domain.UserDTO;
@@ -26,5 +25,12 @@ public class RegistrationController {
         service.save(userDTO);
        return ResponseEntity.ok()
                .header("Access-Control-Expose-Headers", JwtTokenUtils.JWT_TOKEN_HEADER).build();
+    }
+
+    @RequestMapping(value="/modifyuser",method = RequestMethod.POST)
+    public ResponseEntity modify(@RequestBody UserDTO userDTO){
+        service.saveOrUpdate(userDTO);
+        return ResponseEntity.ok()
+                .header("Access-Control-Expose-Headers", JwtTokenUtils.JWT_TOKEN_HEADER).build();
     }
 }

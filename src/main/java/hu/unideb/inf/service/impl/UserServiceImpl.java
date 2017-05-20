@@ -53,7 +53,21 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     @Transactional
     public Long saveOrUpdate(UserDTO userDTO) {
-        return null;
+        SimpleDateFormat sf= new SimpleDateFormat("YYYY-MM-DD");
+        String date = userDTO.getBirthDate();
+        userDTO.setBirthDate(null);
+        UserEntity user = userRepository.findByUsername(userDTO.getUsername());
+        UserEntity toDb = modelMapper.map(userDTO, UserEntity.class);
+        toDb.setId(user.getId());
+        //UserEntity user = userRepository.save(modelMapper.map(userDTO, UserEntity.class));
+        try {
+            user.setBirthDate(sf.parse(date));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        toDb=userRepository.save(toDb);
+
+        return (user != null) ? modelMapper.map(toDb, UserDTO.class).getId() : null;
     }
 
     @Override
