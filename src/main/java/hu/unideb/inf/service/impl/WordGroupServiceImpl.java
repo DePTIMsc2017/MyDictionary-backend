@@ -3,7 +3,6 @@ package hu.unideb.inf.service.impl;
 import hu.unideb.inf.persistence.entities.WordGroupEntity;
 import hu.unideb.inf.persistence.repositories.WordGroupRepository;
 import hu.unideb.inf.service.WordGroupService;
-import hu.unideb.inf.service.domain.WordDTO;
 import hu.unideb.inf.service.domain.WordGroupCollectionDTO;
 import hu.unideb.inf.service.domain.WordGroupDTO;
 import org.modelmapper.ModelMapper;
@@ -36,5 +35,17 @@ public class WordGroupServiceImpl implements WordGroupService {
         List<WordGroupDTO> wordGroupDTO = modelMapper.map(wordGroupEntities, targetListType);
 
         return wordGroupDTO;
+    }
+
+    @Override
+    public List<WordGroupDTO> findWordListByWordGroupId(int id) {
+
+        List<WordGroupEntity> wordGroupEntities = wordGroupRepository.getWordListByWordGroupId(id);
+
+        java.lang.reflect.Type targetListType = new TypeToken<List<WordGroupDTO>>() {
+        }.getType();
+        List<WordGroupDTO> wordGroupDTOList = modelMapper.map(wordGroupEntities, targetListType);
+
+        return wordGroupDTOList;
     }
 }

@@ -1,5 +1,6 @@
 package hu.unideb.inf.persistence.repositories;
 
+import hu.unideb.inf.persistence.entities.WordEntity;
 import hu.unideb.inf.persistence.entities.WordGroupEntity;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -13,6 +14,10 @@ public interface WordGroupRepository extends CrudRepository<WordGroupEntity, Lon
 
     @Query(value = "select w.* from word_group w join user u on w.creator = u.id where u.user_name = ?1 ",nativeQuery = true)
     List<WordGroupEntity> getWordGroupByUserName(String username);
+
+
+    @Query(value = "select w.* from word_group w  where w.id = ?1 ",nativeQuery = true)
+    List<WordGroupEntity> getWordListByWordGroupId(int id);
 
 
 }

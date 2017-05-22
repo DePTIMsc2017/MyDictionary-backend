@@ -10,4 +10,6 @@ import java.util.List;
 public interface WordGroupService {
 
     List<WordGroupDTO> findCollectionsByUsername(String username);
+
+    List<WordGroupDTO> findWordListByWordGroupId(int id);
 }

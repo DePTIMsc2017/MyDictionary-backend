@@ -29,4 +29,11 @@ public class WordGroupController {
 
     }
 
+    @GetMapping("/wordlistbycollection")
+    public ResponseEntity<List<WordGroupDTO>> getWordListByWordGroupId(@RequestParam int id) {
+
+        return ResponseEntity.ok(wordGroupService.findWordListByWordGroupId(id));
+
+    }
+
 }
