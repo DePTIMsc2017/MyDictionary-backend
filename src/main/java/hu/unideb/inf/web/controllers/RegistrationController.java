@@ -46,8 +46,7 @@ public class RegistrationController {
             return ResponseEntity.ok()
                     .header("Access-Control-Expose-Headers", JwtTokenUtils.JWT_TOKEN_HEADER).build();
         } else {
-            return ResponseEntity.ok()
-                    .header("Access-Control-Expose-Headers", JwtTokenUtils.JWT_TOKEN_HEADER).build();
+            return ResponseEntity.badRequest().build();
             //TODO: save failed
         }
     }
