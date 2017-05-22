@@ -1,13 +1,11 @@
 package hu.unideb.inf.web.controllers;
 
 import hu.unideb.inf.service.WordGroupService;
+import hu.unideb.inf.service.domain.CreateGroupDTO;
 import hu.unideb.inf.service.domain.WordGroupDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,6 +32,14 @@ public class WordGroupController {
 
         return ResponseEntity.ok(wordGroupService.findWordListByWordGroupId(id));
 
+    }
+
+    @PostMapping("/creategroup")
+    public ResponseEntity<String> createGroup(@RequestBody CreateGroupDTO createGroupDTO){
+
+        wordGroupService.createGroup(createGroupDTO);
+
+        return ResponseEntity.ok("Succes");
     }
 
 }
