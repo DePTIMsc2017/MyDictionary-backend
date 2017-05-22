@@ -4,8 +4,8 @@ Background:
     Given The user is on login page
 
 Scenario: The user wants to sign in with correct username and password
-	  When The user types teszt into username
-	  And The user types teszt into password
+	  When The user types admin into username
+	  And The user types Test123 into password
 	  And The user clicks on Login button
 	  Then The user is logged in
 
