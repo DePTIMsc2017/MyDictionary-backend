@@ -14,8 +14,8 @@ public class UserDTO implements UserDetails,java.io.Serializable {
     private long id;
     private String username;
     private String password;
-    private String mail;
-    private Date birthDate;
+    private String email;
+    private String birthDate;
     private LanguageDTO defaultLanguage;
     private UserStatus status;
     private Date registrationDate;
@@ -29,11 +29,11 @@ public class UserDTO implements UserDetails,java.io.Serializable {
     public UserDTO() {
     }
 
-    public UserDTO(long id, String username, String password, String mail, Date birthDate, LanguageDTO defaultLanguage, UserStatus status, Date registrationDate, String country, String city, Boolean newsletter, Integer maxWordGroup, Integer maxWordInGroup, List<RoleDTO> roles) {
+    public UserDTO(long id, String username, String password, String mail, String birthDate, LanguageDTO defaultLanguage, UserStatus status, Date registrationDate, String country, String city, Boolean newsletter, Integer maxWordGroup, Integer maxWordInGroup, List<RoleDTO> roles) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.mail = mail;
+        this.email = mail;
         this.birthDate = birthDate;
         this.defaultLanguage = defaultLanguage;
         this.status = status;
@@ -46,19 +46,19 @@ public class UserDTO implements UserDetails,java.io.Serializable {
         this.roles = roles;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String mail) {
+        this.email = mail;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
