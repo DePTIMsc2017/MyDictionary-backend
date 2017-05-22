@@ -3,12 +3,12 @@ package hu.unideb.inf.web.controllers;
 import hu.unideb.inf.security.authentication.JwtTokenUtils;
 import hu.unideb.inf.service.UserService;
 import hu.unideb.inf.service.domain.UserDTO;
+import hu.unideb.inf.service.exception.UserNotFoundException;
+import hu.unideb.inf.service.impl.UserServiceImpl;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by mates on 2017. 05. 14..
@@ -32,6 +32,11 @@ public class RegistrationController {
             //TODO: save failed
         }
 
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<UserDTO> getUser(@RequestParam String username) {
+        return ResponseEntity.ok(service.findUserByName(username));
     }
 
     @RequestMapping(value="/modifyuser",method = RequestMethod.POST)

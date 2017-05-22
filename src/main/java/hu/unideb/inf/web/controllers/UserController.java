@@ -52,6 +52,12 @@ public class UserController {
         return ResponseEntity.ok(true);
     }
 
+    @PostMapping(value = "/profile", params = {"username"})
+    public UserDTO getUserData(@RequestParam(value = "username") String username){
+
+        return userService.findUserByName(username);
+    }
+
     @PostMapping(value = "/changePassword", params = { "id", "newPassword" })
     public ResponseEntity changePasswordWithoutPassword(@RequestParam(value = "id") long id,@RequestParam(value="newPassword") String newPassword){
         return changePassword(id,newPassword,"");
