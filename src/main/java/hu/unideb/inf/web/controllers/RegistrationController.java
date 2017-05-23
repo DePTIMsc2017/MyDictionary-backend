@@ -50,7 +50,7 @@ public class RegistrationController {
         if (!encryptionService.matches(userWithPassDTO.getCurrentPassword(), userWithPassDTO.getPassword())){
             ResponseEntity.badRequest();
         }
-
+        System.out.println(userWithPassDTO);
         service.saveOrUpdate(userWithPassDTO);
         if(userWithPassDTO!=null){
             return ResponseEntity.ok()

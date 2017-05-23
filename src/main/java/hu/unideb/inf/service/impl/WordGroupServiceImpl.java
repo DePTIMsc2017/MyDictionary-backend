@@ -74,7 +74,7 @@ public class WordGroupServiceImpl implements WordGroupService {
 
         LanguageEntity languageEntity = languageRepository.findByName("hu");
 
-        WordGroupCategoryEntity wordGroupCategoryEntity = wordGroupCategoryRepository.findCategoryByName("fruits");
+        WordGroupCategoryEntity wordGroupCategoryEntity = wordGroupCategoryRepository.findCategoryByName("personal");
 
         WordGroupEntity wordGroupEntity = new WordGroupEntity();
         wordGroupEntity.setCreator(userEntity);

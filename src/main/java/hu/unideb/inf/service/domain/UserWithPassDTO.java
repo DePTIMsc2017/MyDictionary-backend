@@ -13,6 +13,11 @@ public class UserWithPassDTO extends UserDTO {
 
     private String currentPassword;
 
+
+    public UserWithPassDTO() {
+
+    }
+
     public UserWithPassDTO(String currentPassword) {
         this.currentPassword = currentPassword;
     }
